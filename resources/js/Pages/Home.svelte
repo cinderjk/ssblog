@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Layout from "./Layouts/App.svelte";
+    import Layout from "../Layouts/App.svelte";
     import { onMount } from "svelte";
     import axios from "axios";
     let users = [];
@@ -17,17 +17,17 @@
 </script>
 
 <Layout header hideHeader headerHeight={56} let:scroller>
-    <div slot="header">Homepage</div>
+    <div slot="header">
+        <div class="header" class:shadow={!!scroller.scroll}>Page title</div>
+    </div>
 
-    <main>
-        {#if error}
-            <p>Something went wrong</p>
-        {:else}
-            <ul>
-                {#each users as user}
-                    <li>Name: {user.name}</li>
-                {/each}
-            </ul>
-        {/if}
-    </main>
+    {#if error}
+        <p>Something went wrong</p>
+    {:else}
+        <ul>
+            {#each users as user}
+                <li>Name: {user.name}</li>
+            {/each}
+        </ul>
+    {/if}
 </Layout>
